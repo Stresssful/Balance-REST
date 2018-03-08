@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res)
 { 
-	var collection = db.get('Songs'); 
+	var collection = db.get('Users'); 
 	collection.insert(
 	{ 
 		email: req.body.Email, 
@@ -27,10 +27,10 @@ router.post('/', function(req, res)
 		outlayCategories: req.body.OutlayCategories,
 		incomeCategories: req.body.IncomeCategories		
 	}, 
-	function(err, song)
+	function(err, user)
 	{
 		if (err) throw err;
-		res.json(song);
+		res.json(user);
 	});
 });
 
