@@ -15,6 +15,25 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/', function(req, res)
+{ 
+	var collection = db.get('Songs'); 
+	collection.insert(
+	{ 
+		email: req.body.Email, 
+		password: req.body.Password,
+		balanceActions: req.body.BalanceActions,
+		shoppingLists: req.body.ShoppingLists,
+		outlayCategories: req.body.OutlayCategories,
+		incomeCategories: req.body.IncomeCategories		
+	}, 
+	function(err, song)
+	{
+		if (err) throw err;
+		res.json(song);
+	});
+});
+
 router.get('/:id', function(req, res) 
 {
 	var collection = db.get('Users');
@@ -38,7 +57,7 @@ router.put('/:id', function(req, res)
 		balanceActions: req.body.BalanceActions,
 		shoppingLists: req.body.ShoppingLists,
 		outlayCategories: req.body.OutlayCategories,
-		incomeCategories: req.body.IncomeCategories,	
+		incomeCategories: req.body.IncomeCategories	
 	}, 
 
 	function(err, user)
