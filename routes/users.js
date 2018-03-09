@@ -11,6 +11,8 @@ router.get('/', function(req, res, next) {
   var query = { email: req.body.Email, password: req.body.Password };
   collection.find(query, function(err, Users)
   {
+  		console.log(req.body.Email);
+  		console.log(req.body.Password);
 		if (err) throw err; 
 		res.json(Users);
   });
