@@ -8,11 +8,11 @@ var db = monk('main:root@ds161148.mlab.com:61148/heroku_tqh5hdjz');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var collection = db.get('Users'); 
-  var query = { email: req.body.Email, password: req.body.Password };
+  var query = { email: req.query.Email, password: req.query.Password };
   collection.find(query, function(err, Users)
   {
-  		console.log(req.body.Email);
-  		console.log(req.body.Password);
+  		console.log(req.query.Email);
+  		console.log(req.query.Password);
 		if (err) throw err; 
 		res.json(Users);
   });
