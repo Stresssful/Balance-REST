@@ -8,7 +8,8 @@ var db = monk('main:root@ds161148.mlab.com:61148/heroku_tqh5hdjz');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var collection = db.get('Users'); 
-  collection.find({}, function(err, Users)
+  var query = { email: req.body.Email, password: req.body.Password };
+  collection.find(query, function(err, Users)
   {
 		if (err) throw err; 
 		res.json(Users);
@@ -22,10 +23,11 @@ router.post('/', function(req, res)
 	{ 
 		email: req.body.Email, 
 		password: req.body.Password,
-		balanceActions: req.body.BalanceActions,
-		shoppingLists: req.body.ShoppingLists,
-		outlayCategories: req.body.OutlayCategories,
-		incomeCategories: req.body.IncomeCategories		
+		data: req.body.Data,
+		//balanceActions: req.body.BalanceActions,
+		//shoppingLists: req.body.ShoppingLists,
+		//outlayCategories: req.body.OutlayCategories,
+		//incomeCategories: req.body.IncomeCategories		
 	}, 
 	function(err, user)
 	{
@@ -54,10 +56,11 @@ router.put('/:id', function(req, res)
 	{ 
 		email: req.body.Email, 
 		password: req.body.Password,
-		balanceActions: req.body.BalanceActions,
-		shoppingLists: req.body.ShoppingLists,
-		outlayCategories: req.body.OutlayCategories,
-		incomeCategories: req.body.IncomeCategories	
+		data: req.body.Data,
+		//balanceActions: req.body.BalanceActions,
+		//shoppingLists: req.body.ShoppingLists,
+		//outlayCategories: req.body.OutlayCategories,
+		//incomeCategories: req.body.IncomeCategories	
 	}, 
 
 	function(err, user)
