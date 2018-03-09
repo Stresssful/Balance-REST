@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
   {
   		console.log(req.query.Email);
   		console.log(req.query.Password);
+  		console.log(Users);
 		if (err) throw err; 
 		res.json(Users);
   });
