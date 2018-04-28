@@ -7,54 +7,51 @@ var db = monk('main:root@ds161148.mlab.com:61148/heroku_tqh5hdjz');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  var collection = db.get('Users'); 
-  var query = { email: req.query.Email, password: req.query.Password };
-  collection.find(query, function(err, Users)
+  var collection = db.get('Groups'); 
+  var query = { _id: req.query.id };
+  collection.find(query, function(err, Group)
   {
-  		console.log(req.query.Email);
-  		console.log(req.query.Password);
-  		console.log(Users);
+  		//console.log(req.query.Email);
+  		//console.log(req.query.Password);
+  		//console.log(Users);
 		if (err) throw err; 
-		res.json(Users);
+		res.json(Group);
   });
 });
 
 router.post('/', function(req, res)
 { 
-	var collection = db.get('Users'); 
+	var collection = db.get('Groups'); 
 	collection.insert(
 	{ 
-		email: req.body.Email, 
-		password: req.body.Password,
+		_id:: req.body.id, 
 		data: req.body.Data,	
 	}, 
-	function(err, user)
+	function(err, group)
 	{
 		if (err) throw err;
-		res.json(user);
+		res.json(group);
 	});
 });
 
 router.get('/:id', function(req, res) 
 {
-	var collection = db.get('Users');
-	collection.findOne({ _id: req.params.id }, function(err, user)
+	var collection = db.get('Groups');
+	collection.findOne({ _id: req.params.id }, function(err, group)
 	{
 		if (err) throw err;
-		res.json(user);
+		res.json(group);
 	});
 });
 
 router.put('/:id', function(req, res)
 { 
-	var collection = db.get('Users'); collection.update(
+	var collection = db.get('Group'); collection.update(
 	{
 		_id: req.params.id
 	},
 
 	{ 
-		email: req.body.Email, 
-		password: req.body.Password,
 		data: req.body.Data,
 	}, 
 
