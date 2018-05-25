@@ -24,7 +24,7 @@ router.post('/', function(req, res)
 	var collection = db.get('Groups'); 
 	collection.insert(
 	{ 
-		_id:: req.body.id, 
+		_id: req.body.id, 
 		data: req.body.Data,	
 	}, 
 	function(err, group)
