@@ -61,23 +61,20 @@ router.get('/:id', function(req, res)
 
 router.put('/:id', function(req, res)
 { 
-	var collection = db.get('Inbox'); 
-	collection.findAndModify(
-	    {
-	        "query": { "_id": req.params.id },
-	        "update": { 
-	            "$set": { 
-	                "data": req.body.data
-	            }
-	        }
-	    },
-	    { "new": true, "upsert": true },
-	    function(err,doc) 
-	    {
-	        if (err) throw err;
-	        res.json(doc);
-	    }
-	);
+	var collection = db.get('Inbox'); collection.update(
+	{
+		_id: req.params.id
+	},
+
+	{ 
+		data: req.body.data,
+	}, 
+
+	function(err, inbox)
+	{
+		if (err) throw err;
+		res.json(inbox);
+	});
 });
 
 module.exports = router;
