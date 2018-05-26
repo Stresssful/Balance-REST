@@ -34,6 +34,20 @@ router.post('/', function(req, res)
 });
 */
 
+router.post('/', function(req, res)
+{ 
+	var collection = db.get('Inbox'); 
+	collection.insert(
+	{ 
+		_id: req.body.id, 
+		data: req.body.data,	
+	}, 
+	function(err, inbox)
+	{
+		if (err) throw err;
+		res.json(inbox);
+	});
+});
 
 router.get('/:id', function(req, res) 
 {
