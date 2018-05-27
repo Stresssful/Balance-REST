@@ -25,7 +25,8 @@ router.post('/', function(req, res)
 	collection.insert(
 	{ 
 		_id: req.body.id, 
-		data: req.body.Data,	
+		data: req.body.Data,
+		updatedAt: req.body.updatedAt,	
 	}, 
 	function(err, group)
 	{
@@ -53,6 +54,7 @@ router.put('/:id', function(req, res)
 
 	{ 
 		data: req.body.Data,
+		updatedAt: req.body.updatedAt,
 	}, 
 
 	function(err, user)
