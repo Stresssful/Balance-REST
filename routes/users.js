@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
   let query = { email: req.query.Email, password: req.query.Password };
   collection.findOne(query, async function(err, doc){
 	if (err) throw err; 
-	res.json(Users);
+	res.json(doc);
   });
 
   /*collection.find(query, function(err, Users)
@@ -65,7 +65,7 @@ router.get('/:id', function(req, res)
   	let query = { _id: req.params.id };
   	collection.findOne(query, async function(err, doc){
 		if (err) throw err; 
-		res.json(Users);
+		res.json(doc);
   	});
 
 
