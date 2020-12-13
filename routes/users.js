@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
   });*/
 });
 
-router.post('/', function(req, res)
+router.post('/', async function(req, res)
 { 
 
 	let users = client.db(databaseName).collection(usersCollectionName);
@@ -77,7 +77,7 @@ router.get('/:id', function(req, res)
 	});*/
 });
 
-router.put('/:id', function(req, res)
+router.put('/:id', async function(req, res)
 { 
 
 	let users = client.db(databaseName).collection(usersCollectionName);
