@@ -79,6 +79,7 @@ router.get('/:id', function(req, res)
 
 router.put('/:id', async function(req, res)
 { 
+	var ObjectId = require('mongodb').ObjectID;
 
 	console.log(req.params.id)
     console.log(req.body.Data);
@@ -86,7 +87,7 @@ router.put('/:id', async function(req, res)
 
     let users = client.db(databaseName).collection(usersCollectionName);
 
-    let query = { email: req.query.Email, password: req.query.Password };
+    let query = { _id: ObjectId(req.params.id) };
 	const update = {
   		"$set": {
     		"data": req.body.Data
