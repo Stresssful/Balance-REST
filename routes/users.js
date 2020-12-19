@@ -82,12 +82,27 @@ router.put('/:id', async function(req, res)
 
 	console.log(req.params.id)
     console.log(req.body.Data);
+    console.log(req.body.Email);
 
-	let users = client.db(databaseName).collection(usersCollectionName);
+    let query = { email: req.query.Email, password: req.query.Password };
+	const update = {
+  		"$set": {
+    		"data": req.body.Data
+  		}
+	};
+	const options = { "upsert": true };
+
+	itemsCollection.updateOne(query, update, options)
+  		.then(result => {
+      		console.log(`Successfully updated a user.`)
+  		})
+  	.catch(err => console.error(`Failed to update a user: ${err}`))
+
+	/*let users = client.db(databaseName).collection(usersCollectionName);
     await users.updateOne(
         { email: req.query.Email, password: req.query.Password },
         { $set: { "data": req.body.Data }}
-    );
+    );*/
 
 
   	let query = { _id: req.params.id };
