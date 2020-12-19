@@ -84,6 +84,8 @@ router.put('/:id', async function(req, res)
     console.log(req.body.Data);
     console.log(req.body.Email);
 
+    let users = client.db(databaseName).collection(usersCollectionName);
+
     let query = { email: req.query.Email, password: req.query.Password };
 	const update = {
   		"$set": {
@@ -103,7 +105,7 @@ router.put('/:id', async function(req, res)
         { email: req.query.Email, password: req.query.Password },
         { $set: { "data": req.body.Data }}
     );*/
-    
+
   	users.findOne(query, async function(err, doc){
 		if (err) throw err; 
 		res.json(doc);
