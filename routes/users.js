@@ -36,7 +36,7 @@ router.post('/', async function(req, res)
 { 
 
 	let users = client.db(databaseName).collection(usersCollectionName);
-    await users.insertOne({ "email": req.body.Email, "name": req.body.Password, "data": req.body.Data },
+    await users.insertOne({ "email": req.body.Email, "password": req.body.Password, "data": req.body.Data },
         function(err, res) {
     		if (err) throw err;
     		console.log("1 document inserted");
@@ -83,7 +83,7 @@ router.put('/:id', async function(req, res)
 	let users = client.db(databaseName).collection(usersCollectionName);
     await users.updateOne(
         { _id: req.params.id },
-        { $set: { "email": req.body.Email, "name": req.body.Password, "data": req.body.Data }}
+        { $set: { "email": req.body.Email, "password": req.body.Password, "data": req.body.Data }}
     );
 
 	/*var collection = db.get('Users'); collection.update(
