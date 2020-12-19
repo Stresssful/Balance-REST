@@ -80,16 +80,17 @@ router.get('/:id', function(req, res)
 router.put('/:id', async function(req, res)
 { 
 
+	console.log(req.params.id)
     console.log(req.body.Data);
 
 	let users = client.db(databaseName).collection(usersCollectionName);
     await users.updateOne(
-        { email: req.query.Email, password: req.query.Password },
-        { $set: { "email": req.body.Email, "password": req.body.Password, "data": req.body.Data }}
+        { _id: ObjectID(req.params.id) },
+        { $set: { "data": req.body.Data }}
     );
 
 
-  	let query = { email: req.query.Email, password: req.query.Password };
+  	let query = { _id: req.params.id };
   	users.findOne(query, async function(err, doc){
 		if (err) throw err; 
 		res.json(doc);
