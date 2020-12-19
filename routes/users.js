@@ -92,7 +92,7 @@ router.put('/:id', async function(req, res)
 	};
 	const options = { "upsert": true };
 
-	itemsCollection.updateOne(query, update, options)
+	users.updateOne(query, update, options)
   		.then(result => {
       		console.log(`Successfully updated a user.`)
   		})
