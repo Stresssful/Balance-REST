@@ -86,6 +86,13 @@ router.put('/:id', async function(req, res)
         { $set: { "email": req.body.Email, "password": req.body.Password, "data": req.body.Data }}
     );
 
+
+  	let query = { _id: req.params.id };
+  	users.findOne(query, async function(err, doc){
+		if (err) throw err; 
+		res.json(doc);
+  	});
+
 	/*var collection = db.get('Users'); collection.update(
 	{
 		_id: req.params.id
