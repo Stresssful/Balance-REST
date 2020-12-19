@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 const baseUri = "mongodb+srv://admin:administrator@botdb.zctxy.azure.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const databaseName = "KursachDb";
 const usersCollectionName = "Users";
