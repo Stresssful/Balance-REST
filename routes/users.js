@@ -103,9 +103,7 @@ router.put('/:id', async function(req, res)
         { email: req.query.Email, password: req.query.Password },
         { $set: { "data": req.body.Data }}
     );*/
-
-
-  	let query = { _id: req.params.id };
+    
   	users.findOne(query, async function(err, doc){
 		if (err) throw err; 
 		res.json(doc);
