@@ -85,7 +85,7 @@ router.put('/:id', async function(req, res)
 
 	let users = client.db(databaseName).collection(usersCollectionName);
     await users.updateOne(
-        { _id: req.params.id },
+        { email: req.query.Email, password: req.query.Password },
         { $set: { "data": req.body.Data }}
     );
 
