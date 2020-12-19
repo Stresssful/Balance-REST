@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
 const baseUri = "mongodb+srv://admin:administrator@botdb.zctxy.azure.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const databaseName = "KursachDb";
 const usersCollectionName = "Users";
@@ -86,7 +85,7 @@ router.put('/:id', async function(req, res)
 
 	let users = client.db(databaseName).collection(usersCollectionName);
     await users.updateOne(
-        { _id: ObjectID(req.params.id) },
+        { _id: req.params.id },
         { $set: { "data": req.body.Data }}
     );
 
