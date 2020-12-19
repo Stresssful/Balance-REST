@@ -80,6 +80,8 @@ router.get('/:id', function(req, res)
 router.put('/:id', async function(req, res)
 { 
 
+    console.log(req.body.Data);
+
 	let users = client.db(databaseName).collection(usersCollectionName);
     await users.updateOne(
         { _id: req.params.id },
